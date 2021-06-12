@@ -1,0 +1,53 @@
+[
+  {
+    "drinkName": "Lava Flow Frappuccino",
+    "toppings": ["Strawberries"],
+    "inside": [
+      "3 scoops of Vanilla Bean",
+      "Half Whole Milk",
+      "Half Peach",
+      "Strawberries"
+    ],
+    "blended": "Yes",
+    "size": "Grande",
+    "creator": "Kimberly",
+    "img": "https://www.hustleandhearts.com/wp-content/uploads/2018/11/lava-flow-refresher.jpg"
+  },
+  {
+    "drinkName": "Blended Pink Drink",
+    "toppings": ["Whipped Cream"],
+    "inside": ["Cream Base", "Vanilla Bean Powder"],
+    "blended": "Yes",
+    "size": "Grande",
+    "creator": "Kimberly",
+    "img": "https://i.redd.it/nj21o1c594i11.jpg"
+  },
+  {
+    "drinkName": "Thin Mint",
+    "toppings": ["Cold Foam", "1 pump Peppermint in Cold Foam"],
+    "inside": [
+      "Cold Brew",
+      "Sweet Cream",
+      "2 pumps Mocha",
+      "2 pumps peppermint"
+    ],
+    "blended": "Yes",
+    "size": "Venti",
+    "creator": "Kimberly",
+    "img": "https://totallythebomb.com/wp-content/uploads/2021/01/Thin-Mints-Frappuccino-5.jpg"
+  },
+  {
+    "drinkName": "Chocolate Dipped Strawberries",
+    "toppings": ["Cold Foam", "Strawberry Puree in Cold Foam", "Chocolate"],
+    "inside": [
+      "2 pumps White Mocha",
+      "2 pumps Raspberry",
+      "Dark Chocolate Curls",
+      "Whipped Cream"
+    ],
+    "blended": "Yes",
+    "size": "Grande",
+    "creator": "Kimberly",
+    "img": "https://i.quotev.com/img/q/u/17/2/8/isuqboquki.jpg"
+  }
+]
