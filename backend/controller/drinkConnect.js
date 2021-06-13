@@ -48,7 +48,7 @@ router.get("/drinks/:id", (req, res, next) => {
 // =-=-=-=- need to make a route for the edit route
 router.get("/drinks/:id/edit", (req, res, next) => {
   const routeId = req.params.id;
-  Drink.findById(routeId).then((drink) => res.render(/* EDIT ROUTE */));
+  Drink.findById(routeId).then((drink) => res.json(drink));
 });
 
 // ACTUALLY UPDATING THE DRINK
@@ -67,7 +67,9 @@ router.put("/drinks/:id", (req, res, next) => {
       img: req.body.img,
     },
     { new: true }
-  );
+  ).then((drink) => {
+    res.json(drink);
+  });
   /*     .then((drink) => {
         res.RENDER 
     }) */
@@ -76,11 +78,12 @@ router.put("/drinks/:id", (req, res, next) => {
 // DELETE ROUTE
 router.delete("/drinks/:id", (req, res, next) => {
   const id = req.params.id;
-  Drink.findOneAndDelete(
-    { _id: id }.then((result) => {
-      // RES.REDIRECT('/DRINKS)
+  Drink.findOneAndDelete({ _id: id })
+    .then(() => {
+      Drink.find({}).then((drinks) => res.json(drinks));
     })
-  );
+    .catch(next);
 });
+// RES.REDIRECT('/DRINKS)
 
 module.exports = router;

@@ -2,8 +2,8 @@ const mongoose = require("../db/connection");
 
 const DrinkSchema = new mongoose.Schema({
   drinkName: String,
-  toppings: [String],
-  inside: [String],
+  toppings: [],
+  inside: [],
   blended: String,
   size: String,
   creator: String,
