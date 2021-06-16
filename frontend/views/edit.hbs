@@ -1,0 +1,79 @@
+<form action="/drinks/{{this.id}}/?_method=put" method="POST">
+    <div class="form-group">
+        <label for="drinkName">Drink Name</label>
+        <input 
+        type="text" 
+        id="title"
+        name="title" 
+        class="form-control"
+        value="{{this.title}}"
+        >
+    </div>
+        <div class="form-group">
+        <label for="toppings">Toppings</label>
+        <input 
+        type="text" 
+        id="title"
+        name="title" 
+        class="form-control"
+        value="{{this.toppings}}"
+        >
+    </div>
+    </div>
+        <div class="form-group">
+        <label for="inside">Inside</label>
+        <input 
+        type="text" 
+        id="title"
+        name="title" 
+        class="form-control"
+        value="{{this.inside}}"
+        >
+    </div>
+        </div>
+        <div class="form-group">
+        <label for="blended">Blended</label>
+        <input 
+        type="text" 
+        id="title"
+        name="title" 
+        class="form-control"
+        value="{{this.blended}}"
+        >
+    </div>
+        </div>
+        <div class="form-group">
+        <label for="size">Size</label>
+        <input 
+        type="text" 
+        id="title"
+        name="title" 
+        class="form-control"
+        value="{{this.size}}"
+        >
+    </div>
+        </div>
+        <div class="form-group">
+        <label for="creator">Creator</label>
+        <input 
+        type="text" 
+        id="title"
+        name="title" 
+        class="form-control"
+        value="{{this.creator}}"
+        >
+    </div>
+        </div>
+        <div class="form-group">
+        <label for="img">Image</label>
+        <input 
+        type="text" 
+        id="title"
+        name="title" 
+        class="form-control"
+        value="{{this.img}}"
+        >
+    </div>
+    <input type="submit" value="Update Drink" class="btn btn-primary">
+    <a href="/drinks" class="btn btn-secondary"> Cancel</a>
+    </form>

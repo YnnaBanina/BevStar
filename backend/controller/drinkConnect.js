@@ -5,16 +5,19 @@ const Drink = require("../models/drinks");
 
 // HOME ROUTE
 router.get("/", (req, res, next) => {
-  res.send(`welcome to the home route`);
+  res.render("../../frontend/views/home.hbs");
 });
 
 // SHOWING ALL OF THE DRINKS
 router.get("/drinks", (req, res, next) => {
-  Drink.find({})
-    .then((drinks) => console.log(res.json(drinks)))
+  const results = Drink.find({});
+  results
+    .then((drs) => {
+      console.log(drs);
+      res.render("../../frontend/views/index.hbs", { drinks: drs });
+    })
     .catch(next);
 });
-
 //  NEW DRINK ROUTE
 // =-=-=-=-= works just need to fix so that it works for the drink aspect and not the todos list
 router.get("/drinks/new", (req, res, next) => {
@@ -40,7 +43,7 @@ router.get("/drinks/:id", (req, res, next) => {
   //   res.send(`Single Drink Route`); WORKS
   const id = req.params.id;
   Drink.findById(id)
-    .then((drink) => res.json(drink))
+    .then((drink) => res.render("../../frontend/views/show.hbs", drink))
     .catch(next);
 });
 
@@ -48,7 +51,9 @@ router.get("/drinks/:id", (req, res, next) => {
 // =-=-=-=- need to make a route for the edit route
 router.get("/drinks/:id/edit", (req, res, next) => {
   const routeId = req.params.id;
-  Drink.findById(routeId).then((drink) => res.json(drink));
+  Drink.findById(routeId).then((drink) =>
+    res.render("../../frontend/views/edit.hbs", drink)
+  );
 });
 
 // ACTUALLY UPDATING THE DRINK

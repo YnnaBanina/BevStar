@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const handlebars = require("express-handlebars");
+const methodOverride = require("method-override");
 const Drink = require("./models/drinks");
 const drinkController = require("./controller/drinkConnect");
 
@@ -7,8 +9,7 @@ const drinkController = require("./controller/drinkConnect");
 app.set("view engine", "hbs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// ejs
+app.use(methodOverride("_method"));
 
 // using the consts
 app.use(drinkController);
