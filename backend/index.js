@@ -4,15 +4,16 @@ const handlebars = require("express-handlebars");
 const methodOverride = require("method-override");
 const Drink = require("./models/drinks");
 const drinkController = require("./controller/drinkConnect");
+const path = require("path");
 
-//testing the hbs
-app.set("view engine", "hbs");
+// using the consts
+// app.engine("handlebars", exphbs());
+app.set("view engine", "handlebars");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
-
-// using the consts
 app.use(drinkController);
+app.use(express.static("public"));
 
 // ======= TESTING THE HOME ROUTE (NOW WORKS ON CONTROLLER)
 // app.get("/", (req, res) => {

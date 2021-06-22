@@ -5,7 +5,7 @@ const Drink = require("../models/drinks");
 
 // HOME ROUTE
 router.get("/", (req, res, next) => {
-  res.render("../../frontend/views/home.hbs");
+  res.render("../../frontend/views/home.hbs", { foo: "bar" });
 });
 
 // SHOWING ALL OF THE DRINKS
@@ -21,7 +21,7 @@ router.get("/drinks", (req, res, next) => {
 //  NEW DRINK ROUTE
 // =-=-=-=-= works just need to fix so that it works for the drink aspect and not the todos list
 router.get("/drinks/new", (req, res, next) => {
-  res.render("../../views/new.hbs");
+  res.render("../../frontend/views/new.hbs");
   // res.send(`on the new route`);
 });
 
@@ -31,8 +31,8 @@ router.post("/drinks", (req, res, next) => {
   console.log(`the create route for data: ${res.body}`);
   console.log(req.body);
   Drink.create(req.body)
-    .then(() => {
-      Drink.find({}).then((drinks) => res.json(drinks));
+    .then((result) => {
+      res.redirect("/drinks");
     })
     .catch(next);
 });
@@ -60,32 +60,23 @@ router.get("/drinks/:id/edit", (req, res, next) => {
 // =-=-=-=-=-= make a hbs for showwww and add here
 router.put("/drinks/:id", (req, res, next) => {
   const id = req.params.id;
-  Drink.findOneAndUpdate(
-    { _id: id },
-    {
-      drinkName: req.body.drinkName,
-      toppings: [req.body.toppings],
-      inside: [req.body.inside],
-      blended: req.body.blended,
-      size: req.body.size,
-      creator: req.body.creator,
-      img: req.body.img,
-    },
-    { new: true }
-  ).then((drink) => {
-    res.json(drink);
-  });
-  /*     .then((drink) => {
-        res.RENDER 
-    }) */
+  Drink.findOneAndUpdate({ _id: id }, req.body, { new: true })
+    .then((drink) => {
+      res.send(drink);
+      // res.render("../../frontend/views/show.hbs", drink);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(`didnt work`);
+    });
 });
 
 // DELETE ROUTE
 router.delete("/drinks/:id", (req, res, next) => {
   const id = req.params.id;
   Drink.findOneAndDelete({ _id: id })
-    .then(() => {
-      Drink.find({}).then((drinks) => res.json(drinks));
+    .then((result) => {
+      res.redirect("/drinks");
     })
     .catch(next);
 });
