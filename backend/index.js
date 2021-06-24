@@ -1,23 +1,24 @@
 const express = require("express");
 const app = express();
-const handlebars = require("express-handlebars");
+// const hbs = require("hbs");
 const methodOverride = require("method-override");
 const Drink = require("./models/drinks");
 const drinkController = require("./controller/drinkConnect");
-const path = require("path");
+// const path = require("path");
 
 // using the consts
-// app.engine("handlebars", exphbs());
-app.set("view engine", "handlebars");
+app.set("view engine", "hbs");
+// app.set("views", path.join(__dirname, "views"));
+// app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(drinkController);
-app.use(express.static("public"));
 
 // ======= TESTING THE HOME ROUTE (NOW WORKS ON CONTROLLER)
 // app.get("/", (req, res) => {
-//   res.send(`magic on home route via app`);
+//   res.render("layout");
 // });
 
 // port
