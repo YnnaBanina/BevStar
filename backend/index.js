@@ -22,7 +22,13 @@ app.use(drinkController);
 // });
 
 // port
-const port = process.env.PORT || 4000;
-app.listen(port, () => {
-  console.log(`magic on port: ${port}`);
+// const port = process.env.PORT || 4000;
+// app.listen(port, () => {
+//   console.log(`magic on port: ${port}`);
+// });
+
+app.set("port", process.env.PORT || 4000);
+
+app.listen(app.get("port"), () => {
+  console.log(`✅ magic on: ${app.get("port")} 🌟`);
 });

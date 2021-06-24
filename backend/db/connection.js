@@ -1,9 +1,13 @@
 const mongoose = require("mongoose");
 
+// const mongoURI = "mongodb://localhost/bevStar"
+// const mongoURI =
+//   "mongodb+srv://ysalzw:74SuAe051W876zGl@cluster0.dxjtf.mongodb.net/deployProject2?retryWrites=true&w=majority";
+
 const mongoURI =
   process.env.NODE_ENV === "production"
     ? process.env.DB_URL
-    : `mongodb://localhost:27017/bevStar`;
+    : "mongodb://localhost/bevStar";
 
 mongoose
   .connect(mongoURI, {
