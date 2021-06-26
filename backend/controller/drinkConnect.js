@@ -6,7 +6,7 @@ const Drink = require("../models/drinks");
 // HOME ROUTE
 router.get("/", (req, res, next) => {
   // res.render("layout.hbs");
-  res.render("../../public/views/home.hbs", { foo: "bar" });
+  res.render("../public/views/home.hbs", { foo: "bar" });
 });
 
 // SHOWING ALL OF THE DRINKS
@@ -15,14 +15,14 @@ router.get("/drinks", (req, res, next) => {
   results
     .then((drs) => {
       console.log(drs);
-      res.render("../../public/views/index.hbs", { drinks: drs });
+      res.render("../public/views/index.hbs", { drinks: drs });
     })
     .catch(next);
 });
 //  NEW DRINK ROUTE
 // =-=-=-=-= works just need to fix so that it works for the drink aspect and not the todos list
 router.get("/drinks/new", (req, res, next) => {
-  res.render("../../public/views/new.hbs");
+  res.render("../public/views/new.hbs");
   // res.send(`on the new route`);
 });
 
@@ -32,7 +32,7 @@ router.post("/drinks", (req, res, next) => {
   console.log(`the create route for data: ${res.body}`);
   console.log(req.body);
   Drink.create(req.body)
-    .then((result) => {
+    .then(() => {
       res.redirect("/drinks");
     })
     .catch(next);
@@ -44,7 +44,7 @@ router.get("/drinks/:id", (req, res, next) => {
   //   res.send(`Single Drink Route`); WORKS
   const id = req.params.id;
   Drink.findById(id)
-    .then((drink) => res.render("../../public/views/show.hbs", drink))
+    .then((drink) => res.render("../public/views/show.hbs", drink))
     .catch(next);
 });
 
@@ -53,7 +53,7 @@ router.get("/drinks/:id", (req, res, next) => {
 router.get("/drinks/:id/edit", (req, res, next) => {
   const routeId = req.params.id;
   Drink.findById(routeId).then((drink) =>
-    res.render("../../public/views/edit.hbs", drink)
+    res.render("../public/views/edit.hbs", drink)
   );
 });
 
@@ -64,7 +64,7 @@ router.put("/drinks/:id", (req, res, next) => {
   Drink.findOneAndUpdate({ _id: id }, req.body, { new: true })
     .then((drink) => {
       // res.send(drink);
-      res.render("../../public/views/show.hbs", drink);
+      res.render("../public/views/show.hbs", drink);
     })
     .catch((err) => {
       console.log(err);

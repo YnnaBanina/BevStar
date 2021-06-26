@@ -1,0 +1,17 @@
+-= HEROKU LOGIN =- 
+ysalzw
+74SuAe051W876zGl
+
+"mongodb://localhost:27017/bevstar"
+
+*   http://127.0.0.1:5500/project-awesome/   * 
+
+-= ATLAS =- 
+mongodb+srv://ysalzw:74SuAe051W876zGl@cluster0.dxjtf.mongodb.net/deployProject2?retryWrites=true&w=majority
+
+heroku config:set DB_URL="mongodb+srv://ysalzw:74SuAe051W876zGl@cluster0.dxjtf.mongodb.net/deployProject2?retryWrites=true&w=majority"
+-= Second try =- 
+
+mongodb+srv://<username>:<password>@cluster0.dxjtf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+
+heroku config:set DB_URL="mongodb+srv://ysalzw:74SuAe051W876zGl@cluster0.dxjtf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"

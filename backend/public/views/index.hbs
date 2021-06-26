@@ -1,16 +1,42 @@
 <head>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sonsie+One&display=swap"
+    rel="stylesheet"
+  />
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 <header class="d-flex justify-content-between align-items-center">
-  <h1>BevStar</h1>
-  <a href="/drinks/new" class="btn btn-primary">New Drinks</a>
+  <a href="/drinks/new" class="newDrink">New Drinks</a>
+  <button class="help" id="open">Help</button>
+    <div id="modal">
+      <div id="textbox">
+        <a id="close" href="#">Close</a>
+        <h1 id="mTitle" class="font-effect-neon">
+          Learn How to Play Tower of Mobs
+        </h1>
+        <h2 id="explain">~~~~What is Tower of Mobs?~~~~</h2>
+          <li id="info2">
+            The goal is to move all the mobs from the left tower to the right
+            tower, adhering to the following rules
+          </li id="info2">
+          <li id="info2">Move only one image at a time</li id="info2">
+          <li id="info2">An image can not be placed on top of the image prior</li id="info2">
+          <li id="info2">All images MUST connect on the last tower</li id="info2">
+      </div>
+    </div>
+  <h1 class="dripEffect">BevStar</h1>
 </header>
+<span>
+  <h2>Caffeinated</h2>
+  <h2>Non-Caffeinated</h2>
+</span>
 <ul class="list-group">
   {{#each drinks}}
-    <li class="indexList">
-      <div>{{this.drinkName}}</div>
+    <li>
+      <div class="dNames">{{this.drinkName}}</div>
       <div class="links">
-        <p> testing the change in index.hbs</p>
         <a href="/drinks/{{this.id}}" class="btn btn-info">View</a>
         <!--insert this anchor tag into the div with a class of 'links'-->
         <a href="/drinks/{{this.id}}/edit" class="btn btn-primary">Edit</a>
