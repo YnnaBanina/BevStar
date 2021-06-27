@@ -1,7 +1,24 @@
 const express = require("express");
 const router = express.Router();
-
 const Drink = require("../models/drinks");
+
+// const openInfo = document.querySelector("#open");
+// const modal = document.querySelector("#modal");
+// const closeInfo = document.querySelector("#close");
+
+// const open = () => {
+//   modal.style.display = "block";
+// };
+// openInfo.addEventListener("click", open);
+// const close = () => {
+//   modal.style.display = "none";
+// };
+// closeInfo.addEventListener("click", close);
+
+// --------hovers over to allow the drop.
+function allowDrop(event) {
+  event.preventDefault();
+}
 
 // HOME ROUTE
 router.get("/", (req, res, next) => {
@@ -32,7 +49,7 @@ router.post("/drinks", (req, res, next) => {
   console.log(`the create route for data: ${res.body}`);
   console.log(req.body);
   Drink.create(req.body)
-    .then(() => {
+    .then((result) => {
       res.redirect("/drinks");
     })
     .catch(next);
