@@ -38,6 +38,6 @@ https://bevstar.herokuapp.com/
 ![Untitled_Artwork 31](https://user-images.githubusercontent.com/80727104/123872916-8f1e3300-d8ea-11eb-9637-3c975910149c.png)
 
 
-** Major Wins **
+**Major Wins**
 I was able to push through the sweat and tears to get this app done. There are still bits and pieces I know I could've done better, but that is with every coded project.  We see things we want to change and do better when time is up. 
 
