@@ -151,7 +151,8 @@ router.put("/drinks/:id/image", upload.single("img"), (req, res, next) => {
         },
       });
     })
-    .catch(next);
+    .then(location.reload())
+    .catch(err);
 });
 
 // DELETE ROUTE
