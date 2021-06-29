@@ -7,7 +7,10 @@ const DrinkSchema = new mongoose.Schema({
   blended: String,
   size: String,
   creator: String,
-  img: String,
+  img: {
+    data: Buffer,
+    contentType: String,
+  },
 });
 
 const Drink = mongoose.model("Drink", DrinkSchema);

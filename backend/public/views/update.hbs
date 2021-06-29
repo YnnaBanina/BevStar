@@ -1,0 +1,13 @@
+<h2>Update Image:</h2>
+<form
+  action="/drinks/{{drinks.id}}/image?_method=put"
+  method="POST"
+  enctype="multipart/form-data"
+>
+  <div>
+    <label for="Select Image">Select Image</label>
+    <input type="file" class="form-control" name="img" accept="image/*" />
+  </div>
+  <input type="submit" class="btn btn-outline-primary" />
+  <a href="/drinks" class="btn btn-outline-secondary">Go Back</a>
+</form>

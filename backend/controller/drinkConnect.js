@@ -1,6 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const Drink = require("../models/drinks");
+const multer = require("multer");
+const imgLoader = require("../models/img");
+
+let upload = multer({
+  dest: "drinks/",
+  storage: multer.memoryStorage(),
+});
 
 // const openInfo = document.querySelector("#open");
 // const modal = document.querySelector("#modal");
@@ -14,11 +21,6 @@ const Drink = require("../models/drinks");
 //   modal.style.display = "none";
 // };
 // closeInfo.addEventListener("click", close);
-
-// --------hovers over to allow the drop.
-function allowDrop(event) {
-  event.preventDefault();
-}
 
 // HOME ROUTE
 router.get("/", (req, res, next) => {
@@ -45,14 +47,37 @@ router.get("/drinks/new", (req, res, next) => {
 
 // CREATING A NEW DRINK ROUTE
 // =-=-=-=-= works just need to fix the info so the user can input information for the drinks and not a title from the todos
-router.post("/drinks", (req, res, next) => {
+router.post("/drinks", upload.single("img"), (req, res, next) => {
   console.log(`the create route for data: ${res.body}`);
   console.log(req.body);
-  Drink.create(req.body)
-    .then((result) => {
+  Drink.create({
+    drinkName: req.body.drinkName,
+    toppings: req.body.toppings,
+    inside: req.body.inside,
+    blended: req.body.blended,
+    size: req.body.size,
+    creator: req.body.creator,
+    img: {
+      data: req.file.buffer ? req.file.buffer : " ",
+      contentType: req.file.mimetype,
+    },
+  })
+    .then((drinks) => {
+      console.log(drinks);
       res.redirect("/drinks");
     })
     .catch(next);
+});
+
+// additional info for the uploading part
+router.get("/drinks/:id/img", async (req, res, next) => {
+  try {
+    const drink = await Drink.findById(req.params.id).populate("img");
+    res.set("Content-Type", drink.img.contentType);
+    res.send(drink.img.data);
+  } catch (err) {
+    next(err);
+  }
 });
 
 // SHOW SINGLE DRINK ROUTE
@@ -67,7 +92,7 @@ router.get("/drinks/:id", (req, res, next) => {
 
 // GETTING TO THE EDIT A DRINK ROUTE
 // =-=-=-=- need to make a route for the edit route
-router.get("/drinks/:id/edit", (req, res, next) => {
+router.get("/drinks/:id/edit", upload.single("img"), (req, res, next) => {
   const routeId = req.params.id;
   Drink.findById(routeId).then((drink) =>
     res.render("../public/views/edit.hbs", drink)
@@ -83,10 +108,50 @@ router.put("/drinks/:id", (req, res, next) => {
       // res.send(drink);
       res.render("../public/views/show.hbs", drink);
     })
-    .catch((err) => {
-      console.log(err);
+    .catch((next) => {
+      console.log(next);
       res.send(`didnt work`);
     });
+});
+
+// update route for the image!
+router.get("/drinks/:id/edit/image", upload.single("img"), (req, res, next) => {
+  const id = req.params.id;
+  Drink.findById(id)
+    .populate("drink")
+    .then((drinks) => {
+      console.log(drinks);
+      res.render("../public/views/update.hbs", { drinks });
+    });
+});
+
+router.put("/drinks/:id/image", upload.single("img"), (req, res, next) => {
+  const id = req.params.id;
+  Drink.findOneAndUpdate(
+    { _id: id },
+    {
+      img: {
+        data: req.file.buffer,
+        contentType: req.file.mimetype,
+      },
+    },
+    { new: true }
+  )
+    .then((drink) => {
+      res.render("../public/views/show.hbs", {
+        drink: {
+          drinkName: drink.drinkName,
+          toppings: drink.toppings,
+          inside: drink.inside,
+          blended: drink.blended,
+          size: drink.size,
+          creator: drink.creator,
+          img: drink.img.data,
+          _id: drink._id,
+        },
+      });
+    })
+    .catch(next);
 });
 
 // DELETE ROUTE
