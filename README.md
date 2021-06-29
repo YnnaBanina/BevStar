@@ -19,6 +19,7 @@ BevStar is the first mongodb/nodejs app I have created!  I always forget what dr
 - MongoDb
 - Heroku 
 - Atlas
+- HBS
 
 ### Installation 
 
