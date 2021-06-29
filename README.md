@@ -14,7 +14,7 @@ BevStar is the first mongodb/nodejs app I have created!  I always forget what dr
 
 - CSS 
 - HTML
-- JS
+- JavaScript
 - Procreate
 - MongoDb
 - Heroku 
