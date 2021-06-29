@@ -39,5 +39,6 @@ https://bevstar.herokuapp.com/
 
 
 **Major Wins**
+---
 I was able to push through the sweat and tears to get this app done. There are still bits and pieces I know I could've done better, but that is with every coded project.  We see things we want to change and do better when time is up. 
 
